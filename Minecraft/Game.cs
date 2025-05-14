@@ -1,3 +1,5 @@
+using Minecraft.Blocks;
+using Minecraft.Render;
 using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
@@ -9,76 +11,97 @@ namespace Minecraft;
 public class Game(int width, int height, string title) : GameWindow(GameWindowSettings.Default,
     new NativeWindowSettings { ClientSize = (width, height), Title = title })
 {
-    private int _vertexBufferObject;
-    private int _vertexArrayObject;
-    private int _elementBufferObject;
     private Shader _shader = null!;
     private double _time;
+    private Chunk _chunk = null!;
+    private ChunkRenderer _chunkRenderer = null!;
+    private Camera _camera = null!;
+    private bool _firstMove = true;
 
-    protected override void OnUpdateFrame(FrameEventArgs args)
+    private Vector2 _lastPos;
+
+    protected override void OnUpdateFrame(FrameEventArgs e)
     {
-        base.OnUpdateFrame(args);
+        base.OnUpdateFrame(e);
         _time += UpdateTime;
 
         if (KeyboardState.IsKeyDown(Keys.Escape))
         {
             Close();
         }
+
+        const float cameraSpeed = 1.5f;
+        const float sensitivity = 0.2f;
+
+        if (KeyboardState.IsKeyDown(Keys.W))
+        {
+            _camera.Position += _camera.Front * cameraSpeed * (float)e.Time;
+        }
+
+        if (KeyboardState.IsKeyDown(Keys.S))
+        {
+            _camera.Position -= _camera.Front * cameraSpeed * (float)e.Time;
+        }
+
+        if (KeyboardState.IsKeyDown(Keys.A))
+        {
+            _camera.Position -= _camera.Right * cameraSpeed * (float)e.Time;
+        }
+
+        if (KeyboardState.IsKeyDown(Keys.D))
+        {
+            _camera.Position += _camera.Right * cameraSpeed * (float)e.Time;
+        }
+
+        if (KeyboardState.IsKeyDown(Keys.Space))
+        {
+            _camera.Position += _camera.Up * cameraSpeed * (float)e.Time;
+        }
+
+        if (KeyboardState.IsKeyDown(Keys.LeftShift))
+        {
+            _camera.Position -= _camera.Up * cameraSpeed * (float)e.Time;
+        }
+
+        if (_firstMove)
+        {
+            _lastPos = new Vector2(MouseState.X, MouseState.Y);
+            _firstMove = false;
+        }
+        else
+        {
+            var deltaX = MouseState.X - _lastPos.X;
+            var deltaY = MouseState.Y - _lastPos.Y;
+            _lastPos = new Vector2(MouseState.X, MouseState.Y);
+
+            _camera.Yaw += deltaX * sensitivity;
+            _camera.Pitch -= deltaY * sensitivity;
+        }
+    }
+
+    protected override void OnMouseWheel(MouseWheelEventArgs e)
+    {
+        base.OnMouseWheel(e);
+
+        _camera.Fov -= e.OffsetY;
     }
 
     protected override void OnLoad()
     {
         base.OnLoad();
-        
+
         GL.Enable(EnableCap.DepthTest);
+        GL.ClearColor(Color4.SkyBlue);
 
-        float[] vertices =
-        [
-            -0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f,
-            0.5f, -0.5f, 0.5f, 0.0f, 1.0f, 0.0f,
-            0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 1.0f,
-            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, 1.0f,
-            -0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f,
-            0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f,
-            0.5f, 0.5f, -0.5f, 0.0f, 0.0f, 1.0f,
-            -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 1.0f,
-        ];
-
-        uint[] indices =
-        [
-            0, 1, 4,
-            1, 4, 5,
-            1, 5, 2,
-            5, 6, 2,
-            3, 2, 7,
-            7, 2, 6,
-            3, 4, 7,
-            0, 3, 4,
-            0, 1, 3,
-            3, 1, 2,
-            4, 5, 7,
-            5, 6, 7
-        ];
+        _chunk = new Chunk();
+        GenerateFlatWorld(_chunk);
+        _chunkRenderer = new ChunkRenderer();
+        _chunkRenderer.Build(_chunk);
 
         _shader = new Shader("Shaders/shader.vert", "Shaders/shader.frag");
 
-        _vertexBufferObject = GL.GenBuffer();
-        _vertexArrayObject = GL.GenVertexArray();
-        _elementBufferObject = GL.GenBuffer();
-
-        GL.BindVertexArray(_vertexArrayObject);
-        GL.BindBuffer(BufferTarget.ArrayBuffer, _vertexBufferObject);
-        GL.BindBuffer(BufferTarget.ElementArrayBuffer, _elementBufferObject);
-        GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), vertices, BufferUsageHint.StaticDraw);
-        GL.BufferData(BufferTarget.ElementArrayBuffer, indices.Length * sizeof(uint), indices,
-            BufferUsageHint.StaticDraw);
-
-        GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 0);
-        GL.EnableVertexAttribArray(0);
-        GL.VertexAttribPointer(1, 3, VertexAttribPointerType.Float, false, 6 * sizeof(float), 3 * sizeof(float));
-        GL.EnableVertexAttribArray(1);
-
-        GL.ClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+        _camera = new Camera(Vector3.UnitZ * 3, Size.X / (float)Size.Y);
+        CursorState = CursorState.Grabbed;
     }
 
     protected override void OnRenderFrame(FrameEventArgs args)
@@ -87,21 +110,12 @@ public class Game(int width, int height, string title) : GameWindow(GameWindowSe
         GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
         _shader.Use();
 
-        var deltaY = (float) Math.Sin(_time) * 0.25f;
-        var model = Matrix4.Identity * Matrix4.CreateTranslation(0.0f, deltaY, 0.0f) * Matrix4.CreateRotationY(MathHelper.DegreesToRadians(20 * (float) _time));
-        var view = Matrix4.CreateTranslation(0.0f, 0.0f, -3.0f);
-        var projection =
-            Matrix4.CreatePerspectiveFieldOfView(MathHelper.DegreesToRadians(45.0f), Size.X / (float) Size.Y, 0.1f,
-                100.0f);
-        var modelLocation = GL.GetUniformLocation(_shader.Handle, "model");
-        var projectionLocation = GL.GetUniformLocation(_shader.Handle, "projection");
-        var viewLocation = GL.GetUniformLocation(_shader.Handle, "view");
-        GL.UniformMatrix4(modelLocation, true, ref model);
-        GL.UniformMatrix4(projectionLocation, true, ref projection);
-        GL.UniformMatrix4(viewLocation, true, ref view);
+        var model = Matrix4.Identity;
+        _shader.SetMatrix4("model", model);
+        _shader.SetMatrix4("view", _camera.GetViewMatrix());
+        _shader.SetMatrix4("projection", _camera.GetProjectionMatrix());
 
-        GL.BindVertexArray(_vertexArrayObject);
-        GL.DrawElements(PrimitiveType.Triangles, 36, DrawElementsType.UnsignedInt, 0);
+        _chunkRenderer.Render();
 
         SwapBuffers();
     }
@@ -110,5 +124,14 @@ public class Game(int width, int height, string title) : GameWindow(GameWindowSe
     {
         base.OnFramebufferResize(e);
         GL.Viewport(0, 0, e.Width, e.Height);
+    }
+
+    private void GenerateFlatWorld(Chunk chunk)
+    {
+        for (var x = 0; x < Chunk.SizeX; x++)
+        for (var z = 0; z < Chunk.SizeZ; z++)
+        {
+            chunk[x, 0, z] = new GreenBlock();
+        }
     }
 }

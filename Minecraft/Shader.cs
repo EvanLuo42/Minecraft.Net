@@ -1,4 +1,5 @@
 using OpenTK.Graphics.OpenGL4;
+using OpenTK.Mathematics;
 using static System.GC;
 
 namespace Minecraft;
@@ -8,6 +9,7 @@ public sealed class Shader : IDisposable
     public readonly int Handle;
 
     private bool _disposed;
+    private readonly Dictionary<string, int> _uniformLocations = new();
 
     public Shader(string vertexPath, string fragmentPath)
     {
@@ -52,11 +54,27 @@ public sealed class Shader : IDisposable
         GL.DetachShader(Handle, fragmentShader);
         GL.DeleteShader(fragmentShader);
         GL.DeleteShader(vertexShader);
+        
+        GL.GetProgram(Handle, GetProgramParameterName.ActiveUniforms, out var numberOfUniforms);
+        for (var i = 0; i < numberOfUniforms; i++)
+        {
+            var key = GL.GetActiveUniform(Handle, i, out _, out _);
+            
+            var location = GL.GetUniformLocation(Handle, key);
+            
+            _uniformLocations.Add(key, location);
+        }
     }
     
     public void Use()
     {
         GL.UseProgram(Handle);
+    }
+    
+    public void SetMatrix4(string name, Matrix4 data)
+    {
+        GL.UseProgram(Handle);
+        GL.UniformMatrix4(_uniformLocations[name], true, ref data);
     }
 
     ~Shader()

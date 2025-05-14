@@ -8,19 +8,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d1e46a3-e247-490e-b43d-c98ad5de0f31" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Minecraft/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Minecraft/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Minecraft/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Minecraft/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Minecraft/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Minecraft.sln" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Minecraft/Game.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Minecraft/Minecraft.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Minecraft/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Minecraft/Shader.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Minecraft/Shaders/shader.frag" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Minecraft/Shaders/shader.vert" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Minecraft/Blocks/AirBlock.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Minecraft/Blocks/Block.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Minecraft/Blocks/GreenBlock.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Minecraft/Camera.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Minecraft/Render/Chunk.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Minecraft/Render/ChunkMesh.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Minecraft/Render/ChunkRenderer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Minecraft/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Minecraft/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Minecraft/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Game.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Minecraft/Shader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Shader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Minecraft/Shaders/shader.frag" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Shaders/shader.frag" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Minecraft/Shaders/shader.vert" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Shaders/shader.vert" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +36,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/fc07acd6d8bb40cfb45350f765a2ebd84d6800/ce/c27f83fc/GL.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/378f97af0b35589b8be4cfb4f9775d19aef907ca43eefc9138f8136f081f5e5/GameWindow.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="SWEA" />
   </component>
@@ -103,16 +103,28 @@
       <updated>1743760446795</updated>
       <workItem from="1743760447814" duration="435000" />
       <workItem from="1743760964191" duration="112000" />
-      <workItem from="1747052077979" duration="19223000" />
+      <workItem from="1747052077979" duration="25319000" />
     </task>
+    <task id="LOCAL-00001" summary="feat: Code for rendering cube">
+      <option name="closed" value="true" />
+      <created>1747144028915</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1747144028915</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="feat: Code for rendering cube" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Code for rendering cube" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
