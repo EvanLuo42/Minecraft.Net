@@ -131,7 +131,7 @@ public class Game(int width, int height, string title) : GameWindow(GameWindowSe
         for (var x = 0; x < Chunk.SizeX; x++)
         for (var z = 0; z < Chunk.SizeZ; z++)
         {
-            chunk[x, 0, z] = new GreenBlock();
+            chunk[x, 0, z] = new GrassBlock();
         }
     }
 }

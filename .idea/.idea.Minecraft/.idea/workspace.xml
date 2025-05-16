@@ -8,16 +8,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d1e46a3-e247-490e-b43d-c98ad5de0f31" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Minecraft/Blocks/AirBlock.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Minecraft/Blocks/Block.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Minecraft/Blocks/GreenBlock.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Minecraft/Camera.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Minecraft/Render/Chunk.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Minecraft/Render/ChunkMesh.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Minecraft/Render/ChunkRenderer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Minecraft/Render/MeshSection.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Minecraft/Render/Texture.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Minecraft/Render/Vertex.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Minecraft/Textures/dirt.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Minecraft/Textures/grass_block_side.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Minecraft/Textures/green_concrete_powder.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Minecraft/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Minecraft/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Minecraft/Blocks/Block.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Blocks/Block.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Minecraft/Blocks/GreenBlock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Blocks/GrassBlock.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Minecraft/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Game.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Minecraft/Shader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Shader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Minecraft/Minecraft.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Minecraft.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Minecraft/Render/ChunkMesh.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Render/ChunkMesh.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Minecraft/Render/ChunkRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Render/ChunkRenderer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Minecraft/Shaders/shader.frag" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Shaders/shader.frag" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Minecraft/Shaders/shader.vert" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Shaders/shader.vert" afterDir="false" />
     </list>
@@ -40,9 +43,9 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="SWEA" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2wzl2XlthsLEbhaYLyuby1Yp3Un" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -51,29 +54,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    ".NET Project.Minecraft.executor": "Run",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "configurable.group.build",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;.NET Project.Minecraft.executor&quot;: &quot;Run&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.build&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Minecraft" type="DotNetProject" factoryName=".NET Project">
-      <option name="EXE_PATH" value="" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Minecraft/bin/Debug/net9.0/Minecraft" />
       <option name="PROGRAM_PARAMETERS" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Minecraft/bin/Debug/net9.0" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <option name="ENV_FILE_PATHS" value="" />
@@ -88,7 +91,7 @@
       <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
       <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
       <option name="PROJECT_KIND" value="DotNetCore" />
-      <option name="PROJECT_TFM" value="" />
+      <option name="PROJECT_TFM" value="net9.0" />
       <method v="2">
         <option name="Build" />
       </method>
@@ -103,7 +106,10 @@
       <updated>1743760446795</updated>
       <workItem from="1743760447814" duration="435000" />
       <workItem from="1743760964191" duration="112000" />
-      <workItem from="1747052077979" duration="25319000" />
+      <workItem from="1747052077979" duration="25690000" />
+      <workItem from="1747213604171" duration="65000" />
+      <workItem from="1747300545891" duration="37000" />
+      <workItem from="1747402897605" duration="5766000" />
     </task>
     <task id="LOCAL-00001" summary="feat: Code for rendering cube">
       <option name="closed" value="true" />
@@ -113,7 +119,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747144028915</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: Implement basic block and chunk rendering system">
+      <option name="closed" value="true" />
+      <created>1747212177730</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1747212177730</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -124,7 +138,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="feat: Code for rendering cube" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Code for rendering cube" />
+    <MESSAGE value="feat: Implement basic block and chunk rendering system" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Implement basic block and chunk rendering system" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
