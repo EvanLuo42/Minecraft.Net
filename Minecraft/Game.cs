@@ -9,7 +9,7 @@ using OpenTK.Windowing.GraphicsLibraryFramework;
 namespace Minecraft;
 
 public class Game(int width, int height, string title) : GameWindow(GameWindowSettings.Default,
-    new NativeWindowSettings { ClientSize = (width, height), Title = title })
+    new NativeWindowSettings { ClientSize = (width, height), Title = title, NumberOfSamples = 4 })
 {
     private Shader _shader = null!;
     private double _time;

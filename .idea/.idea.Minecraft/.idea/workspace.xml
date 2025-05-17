@@ -8,11 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d1e46a3-e247-490e-b43d-c98ad5de0f31" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Minecraft/Render/IChunkGenerator.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Minecraft/Utils/FastNoiseLite.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Minecraft/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Minecraft/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Minecraft/Render/MeshSection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Render/MeshSection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Minecraft/Render/World.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Render/World.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Minecraft/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Game.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +98,7 @@
       <workItem from="1747052077979" duration="25690000" />
       <workItem from="1747213604171" duration="65000" />
       <workItem from="1747300545891" duration="37000" />
-      <workItem from="1747402897605" duration="12420000" />
+      <workItem from="1747402897605" duration="12723000" />
     </task>
     <task id="LOCAL-00001" summary="feat: Code for rendering cube">
       <option name="closed" value="true" />
@@ -136,7 +132,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747449706896</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="feat: Introduce Perlin terrain generation and refactor mesh section properties">
+      <option name="closed" value="true" />
+      <created>1747450963779</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1747450963779</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,7 +154,8 @@
     <MESSAGE value="feat: Implement basic block and chunk rendering system" />
     <MESSAGE value="feat: Support texture rendering" />
     <MESSAGE value="feat: Implement block registration and world management system" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Implement block registration and world management system" />
+    <MESSAGE value="feat: Introduce Perlin terrain generation and refactor mesh section properties" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Introduce Perlin terrain generation and refactor mesh section properties" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
