@@ -16,6 +16,7 @@ public class Game(int width, int height, string title) : GameWindow(GameWindowSe
     private World _world = null!;
     private Camera _camera = null!;
     private bool _firstMove = true;
+    private bool _pause;
 
     private Vector2 _lastPos;
 
@@ -26,10 +27,18 @@ public class Game(int width, int height, string title) : GameWindow(GameWindowSe
 
         if (KeyboardState.IsKeyDown(Keys.Escape))
         {
-            Close();
+            _pause = !_pause;
         }
 
-        const float cameraSpeed = 1.5f;
+        if (_pause)
+        {
+            CursorState = CursorState.Normal;
+            return;
+        }
+
+        CursorState = CursorState.Grabbed;
+
+        const float cameraSpeed = 4.5f;
         const float sensitivity = 0.2f;
 
         if (KeyboardState.IsKeyDown(Keys.W))
@@ -100,7 +109,6 @@ public class Game(int width, int height, string title) : GameWindow(GameWindowSe
         _shader = new Shader("Shaders/shader.vert", "Shaders/shader.frag");
 
         _camera = new Camera(Vector3.UnitZ * 3, Size.X / (float)Size.Y);
-        CursorState = CursorState.Grabbed;
     }
 
     protected override void OnRenderFrame(FrameEventArgs args)
@@ -124,5 +132,6 @@ public class Game(int width, int height, string title) : GameWindow(GameWindowSe
     {
         base.OnFramebufferResize(e);
         GL.Viewport(0, 0, e.Width, e.Height);
+        _camera.AspectRatio = e.Width / (float)e.Height;
     }
 }
