@@ -13,8 +13,7 @@ public class Game(int width, int height, string title) : GameWindow(GameWindowSe
 {
     private Shader _shader = null!;
     private double _time;
-    private Chunk _chunk = null!;
-    private ChunkRenderer _chunkRenderer = null!;
+    private World _world = null!;
     private Camera _camera = null!;
     private bool _firstMove = true;
 
@@ -91,12 +90,12 @@ public class Game(int width, int height, string title) : GameWindow(GameWindowSe
         base.OnLoad();
 
         GL.Enable(EnableCap.DepthTest);
+        GL.Enable(EnableCap.StencilTest);
         GL.ClearColor(Color4.SkyBlue);
+        GL.Enable(EnableCap.Multisample);
 
-        _chunk = new Chunk();
-        GenerateFlatWorld(_chunk);
-        _chunkRenderer = new ChunkRenderer();
-        _chunkRenderer.Build(_chunk);
+        BlockRegistration.RegisterBlocks();
+        _world = new World();
 
         _shader = new Shader("Shaders/shader.vert", "Shaders/shader.frag");
 
@@ -107,15 +106,16 @@ public class Game(int width, int height, string title) : GameWindow(GameWindowSe
     protected override void OnRenderFrame(FrameEventArgs args)
     {
         base.OnRenderFrame(args);
-        GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+        GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit | ClearBufferMask.StencilBufferBit);
         _shader.Use();
-
-        var model = Matrix4.Identity;
-        _shader.SetMatrix4("model", model);
+        
         _shader.SetMatrix4("view", _camera.GetViewMatrix());
         _shader.SetMatrix4("projection", _camera.GetProjectionMatrix());
-
-        _chunkRenderer.Render();
+        
+        foreach (var chunk in _world.GetVisibleChunks(_camera.Position))
+        {
+            chunk.Render(_shader);
+        }
 
         SwapBuffers();
     }
@@ -124,14 +124,5 @@ public class Game(int width, int height, string title) : GameWindow(GameWindowSe
     {
         base.OnFramebufferResize(e);
         GL.Viewport(0, 0, e.Width, e.Height);
-    }
-
-    private void GenerateFlatWorld(Chunk chunk)
-    {
-        for (var x = 0; x < Chunk.SizeX; x++)
-        for (var z = 0; z < Chunk.SizeZ; z++)
-        {
-            chunk[x, 0, z] = new GrassBlock();
-        }
     }
 }

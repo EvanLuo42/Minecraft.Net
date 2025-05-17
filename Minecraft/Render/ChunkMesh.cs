@@ -7,6 +7,14 @@ public class ChunkMesh
     public readonly List<MeshSection> Sections = [];
 
     private readonly Dictionary<(Vector3, Vector2), uint> _vertexMap = new();
+    
+    private static readonly Vector2[] DefaultUv =
+    [
+        new(0f, 0f),
+        new(1f, 0f),
+        new(1f, 1f),
+        new(0f, 1f)
+    ];
 
     private MeshSection GetOrCreateSection(Texture texture)
     {
@@ -33,32 +41,29 @@ public class ChunkMesh
         section.Indices.Add(baseIndex + 0);
     }
 
-    public static ChunkMesh BuildIndexedMesh(Chunk chunk)
+    public static ChunkMesh BuildIndexedMesh(Chunk chunk, World world, Vector2i chunkPos)
     {
         var mesh = new ChunkMesh();
         foreach (var face in CubeFace.All)
         {
             for (var x = 0; x < Chunk.SizeX; x++)
-            for (var y = 0; y < Chunk.SizeX; y++)
-            for (var z = 0; z < Chunk.SizeX; z++)
+            for (var y = 0; y < Chunk.SizeY; y++)
+            for (var z = 0; z < Chunk.SizeZ; z++)
             {
                 if (chunk[x, y, z].IsTransparent) continue;
                 var block = chunk[x, y, z];
-
+                
                 var position = new Vector3i(x, y, z);
-                var (nx, ny, nz) = position + face.Normal;
-                if (!chunk[nx, ny, nz].IsTransparent) continue;
-                var quad = face.Vertices.Select(v => position + v).ToArray();
-                Vector2[] textures = [
-                    new(0.0f, 0.0f),
-                    new(1.0f, 0.0f),
-                    new(1.0f, 1.0f),
-                    new(0.0f, 1.0f)
-                ];
+                var worldPos = new Vector3(chunkPos.X * Chunk.SizeX + x, y, chunkPos.Y * Chunk.SizeZ + z);
+                var (nx, ny, nz) = worldPos + face.Normal;
+                if (!world.GetBlock((int)nx, (int)ny, (int)nz).IsTransparent) continue;
+                var quad = new Vector3[4];
+                for (var i = 0; i < 4; i++)
+                    quad[i] = position + face.Vertices[i];
                 foreach (var (faceName, texture) in block.Textures)
                 {
                     if (!face.Textures.Contains(faceName)) continue;
-                    mesh.AddQuad(quad, textures, texture);
+                    mesh.AddQuad(quad, DefaultUv, texture);
                 }
             }
         }

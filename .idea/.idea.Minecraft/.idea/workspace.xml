@@ -8,21 +8,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d1e46a3-e247-490e-b43d-c98ad5de0f31" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Minecraft/Render/MeshSection.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Minecraft/Render/Texture.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Minecraft/Render/Vertex.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Minecraft/Textures/dirt.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Minecraft/Textures/grass_block_side.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Minecraft/Textures/green_concrete_powder.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Minecraft/Blocks/BlockRegistration.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Minecraft/Blocks/BlockRegistry.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Minecraft/Render/World.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Minecraft/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Minecraft/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Minecraft.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft.sln.DotSettings.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Minecraft/Blocks/Block.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Blocks/Block.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Minecraft/Blocks/GreenBlock.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Blocks/GrassBlock.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Minecraft/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Game.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Minecraft/Minecraft.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Minecraft.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Minecraft/Render/Chunk.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Render/Chunk.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Minecraft/Render/ChunkMesh.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Render/ChunkMesh.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Minecraft/Render/ChunkRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Render/ChunkRenderer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Minecraft/Shaders/shader.frag" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Shaders/shader.frag" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Minecraft/Shaders/shader.vert" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Shaders/shader.vert" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,8 +31,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/b441354b344b43edb550af154ae750aeea00/4a/379accdb/02000006pdb4.il" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/fc07acd6d8bb40cfb45350f765a2ebd84d6800/ce/c27f83fc/GL.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/378f97af0b35589b8be4cfb4f9775d19aef907ca43eefc9138f8136f081f5e5/GameWindow.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4db39afec2153adb2df57be1e9456b1e55d4ecdfa9c9473e2c3fffe3b2d29a/GameWindowSettings.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/997d2c0341d69df6df6b6a4dacfef2a38986a28984a4cb5cd220d86eaaa98d/NativeWindowSettings.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProblemsViewState">
@@ -109,7 +107,7 @@
       <workItem from="1747052077979" duration="25690000" />
       <workItem from="1747213604171" duration="65000" />
       <workItem from="1747300545891" duration="37000" />
-      <workItem from="1747402897605" duration="5766000" />
+      <workItem from="1747402897605" duration="11086000" />
     </task>
     <task id="LOCAL-00001" summary="feat: Code for rendering cube">
       <option name="closed" value="true" />
@@ -127,7 +125,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747212177730</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="feat: Support texture rendering">
+      <option name="closed" value="true" />
+      <created>1747408996155</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1747408996155</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,7 +145,8 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="feat: Code for rendering cube" />
     <MESSAGE value="feat: Implement basic block and chunk rendering system" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Implement basic block and chunk rendering system" />
+    <MESSAGE value="feat: Support texture rendering" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Support texture rendering" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

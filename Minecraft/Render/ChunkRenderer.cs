@@ -7,11 +7,12 @@ public class ChunkRenderer
 {
     private record RenderSection(int Vao, int IndexCount, Texture Texture);
     private readonly List<RenderSection> _sections = [];
+    private Vector3 _position;
     
-
-    public void Build(Chunk chunk)
+    public void Build(Chunk chunk, Vector2i chunkPos, World world)
     {
-        var mesh = ChunkMesh.BuildIndexedMesh(chunk);
+        _position = new Vector3(chunkPos.X * Chunk.SizeX, 0, chunkPos.Y * Chunk.SizeZ);
+        var mesh = ChunkMesh.BuildIndexedMesh(chunk, world, chunkPos);
 
         foreach (var section in mesh.Sections)
         {
@@ -38,8 +39,11 @@ public class ChunkRenderer
         }
     }
 
-    public void Render()
+    public void Render(Shader shader)
     {
+        var model = Matrix4.CreateTranslation(_position);
+        shader.SetMatrix4("model", model);
+        
         foreach (var section in _sections)
         {
             section.Texture.Use(TextureUnit.Texture0);

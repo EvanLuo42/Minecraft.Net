@@ -2,15 +2,18 @@ using Minecraft.Render;
 
 namespace Minecraft.Blocks;
 
-public class Block
+public abstract class Block(string name, bool isTransparent)
 {
-    public string Name { get; set; }
-    public bool IsTransparent { get; set; }
+    public string Name { get; set; } = name;
+    public bool IsTransparent { get; set; } = isTransparent;
     public readonly Dictionary<FaceName, Texture> Textures = new();
-
-    protected Block(string name, bool isTransparent)
+    
+    public Texture? GetFaceTexture(FaceName face)
     {
-        Name = name;
-        IsTransparent = isTransparent;
+        return Textures.TryGetValue(face, out var tex)
+            ? tex
+            : Textures.GetValueOrDefault(FaceName.All);
     }
+    
+    public Block Clone() => this;
 }

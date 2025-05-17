@@ -16,13 +16,13 @@ public class Chunk
         for (var y = 0; y < SizeX; y++)
         for (var z = 0; z < SizeX; z++)
         {
-            _blocks[x, y, z] = new AirBlock();
+            _blocks[x, y, z] = BlockRegistry.Instance["air"]!;
         }
     }
 
     public Block this[int x, int y, int z]
     {
-        get => InBounds(x, y, z) ? _blocks[x, y, z] : new AirBlock();
+        get => InBounds(x, y, z) ? _blocks[x, y, z] : BlockRegistry.Instance["air"]!;
         set
         {
             if (InBounds(x, y, z)) _blocks[x, y, z] = value;
