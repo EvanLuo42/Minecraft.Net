@@ -8,16 +8,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8d1e46a3-e247-490e-b43d-c98ad5de0f31" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Minecraft/Blocks/BlockRegistration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Minecraft/Blocks/BlockRegistry.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Minecraft/Render/World.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Minecraft/Render/IChunkGenerator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Minecraft/Utils/FastNoiseLite.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Minecraft/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Minecraft/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Minecraft.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Minecraft/Blocks/Block.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Blocks/Block.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Minecraft/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Game.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Minecraft/Render/Chunk.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Render/Chunk.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Minecraft/Render/ChunkMesh.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Render/ChunkMesh.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Minecraft/Render/ChunkRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Render/ChunkRenderer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Minecraft/Render/MeshSection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Render/MeshSection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Minecraft/Render/World.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Minecraft/Render/World.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,24 +47,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Project.Minecraft.executor&quot;: &quot;Run&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.build&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Project.Minecraft.executor": "Run",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Minecraft" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="$PROJECT_DIR$/Minecraft/bin/Debug/net9.0/Minecraft" />
@@ -107,7 +102,7 @@
       <workItem from="1747052077979" duration="25690000" />
       <workItem from="1747213604171" duration="65000" />
       <workItem from="1747300545891" duration="37000" />
-      <workItem from="1747402897605" duration="11086000" />
+      <workItem from="1747402897605" duration="12420000" />
     </task>
     <task id="LOCAL-00001" summary="feat: Code for rendering cube">
       <option name="closed" value="true" />
@@ -133,7 +128,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747408996155</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="feat: Implement block registration and world management system">
+      <option name="closed" value="true" />
+      <created>1747449706896</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1747449706896</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,7 +149,8 @@
     <MESSAGE value="feat: Code for rendering cube" />
     <MESSAGE value="feat: Implement basic block and chunk rendering system" />
     <MESSAGE value="feat: Support texture rendering" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: Support texture rendering" />
+    <MESSAGE value="feat: Implement block registration and world management system" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Implement block registration and world management system" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

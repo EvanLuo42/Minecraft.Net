@@ -7,6 +7,7 @@ public class World
 {
     private readonly Dictionary<Vector2i, Chunk> _chunks = new();
     private readonly Dictionary<Vector2i, ChunkRenderer> _renderers = new();
+    private readonly IChunkGenerator _generator = new PerlinTerrainGenerator();
 
     public IEnumerable<ChunkRenderer> GetVisibleChunks(Vector3 camPos, int viewDist = 6)
     {
@@ -19,7 +20,7 @@ public class World
 
             if (_chunks.TryGetValue(pos, out var chunk)) continue;
             chunk = new Chunk();
-            GenerateFlat(chunk);
+            _generator.Generate(pos, chunk);
             _chunks[pos] = chunk;
         }
         
@@ -56,12 +57,5 @@ public class World
         return _chunks.TryGetValue(chunkPos, out var chunk)
             ? chunk[localX, worldY, localZ]
             : new AirBlock();
-    }
-    
-    private static void GenerateFlat(Chunk chunk)
-    {
-        for (var x = 0; x < Chunk.SizeX; x++)
-        for (var z = 0; z < Chunk.SizeZ; z++)
-            chunk[x, 0, z] = BlockRegistry.Instance["grass"]!;
     }
 }
